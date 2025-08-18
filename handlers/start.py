@@ -14,12 +14,11 @@ async def _task(message: Message, state: FSMContext):
     """
      botni assosiy /start file
     """
-    
-    first_name = message.from_user.first_name
-    text = texts.START.format(first_name)
+    lang = message.from_user.language_code
+    text = texts.START[lang]
     user_id = message.from_user.id
     
-    buttons.send_webapp_button(user_id=user_id, text=text)
+    buttons.send_webapp_button(lang=lang, user_id=user_id, text=text)
     
     
 @dp.message_handler(commands=['start'], state="*")
