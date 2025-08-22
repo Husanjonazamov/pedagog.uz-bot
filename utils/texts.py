@@ -62,3 +62,11 @@ CHANNEL = {
     "ru": "🔔 Подписаться на канал",
     "en": "🔔 Subscribe to the channel",
 }
+
+
+
+COMPETITION = {
+    "uz": "🏆 Siz *Konkurs* bo'limiga kirdingiz! 🎉 Omad tilaymiz!",
+    "ru": "🏆 Вы вошли в раздел *Конкурс*! 🎉 Желаем удачи!",
+    "en": "🏆 You have entered the *Competition* section! 🎉 Good luck!"
+}
