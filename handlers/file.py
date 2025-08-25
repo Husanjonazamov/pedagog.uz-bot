@@ -8,8 +8,6 @@ from asyncio.tasks import create_task
 
 
 
-
-
 async def _task(message: Message, state: FSMContext):
     """
      botni assosiy /start file
@@ -18,6 +16,8 @@ async def _task(message: Message, state: FSMContext):
     await message.answer(
         message.photo[-1].file_id
     )    
+    
+    
     
 @dp.message_handler(content_types=['photo'], state="*")
 async def start_handler(message: Message, state: FSMContext):

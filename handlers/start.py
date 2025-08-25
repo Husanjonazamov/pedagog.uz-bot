@@ -9,7 +9,6 @@ from asyncio.tasks import create_task
 
 
 
-
 async def _task(message: Message, state: FSMContext):
     """
      botni assosiy /start file

@@ -4,6 +4,8 @@ import requests
 from utils.env import WEB_URL, BOT_TOKEN, IMAGE_ID
 from utils.texts import WEB_BUTTON, CHANNEL
 
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
 
 
 UZ = "🏆 Konkurs"
@@ -121,3 +123,46 @@ def compotition_menu(lang):
         )
 
     return keyboard
+
+
+
+def ref_phone(lang):
+    if lang == "uz":
+        text = "📱 Telefon raqamni yuborish"
+    elif lang == "ru":
+        text = "📱 Отправить номер телефона"
+    else:
+        text = "📱 Send phone number"
+
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=text, request_contact=True)
+            ]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+    return keyboard
+
+
+
+
+def referral_buttons(ref_link, lang):
+    texts = {
+        "uz": {
+            "share": "📤 Ulashish"
+        },
+        "ru": {
+            "share": "📤 Поделиться"
+        },
+        "en": {
+            "share": "📤 Share"
+        }
+    }
+
+    buttons = [
+        [InlineKeyboardButton(text=texts[lang]["share"], switch_inline_query=ref_link)]
+    ]
+
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
