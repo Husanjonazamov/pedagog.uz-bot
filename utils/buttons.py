@@ -74,6 +74,10 @@ gifts_en = "🎁 View gifts"
 back_en = "⬅️ Back"
 
 
+top_referrals_uz = "🏆 Eng faol referlar"
+top_referrals_ru = "🏆 Топ рефералы"
+top_referrals_en = "🏆 Top Referrals"
+
 
 
 def compotition_menu(lang):
@@ -86,7 +90,7 @@ def compotition_menu(lang):
                 ],
                 [
                     KeyboardButton(text=gifts_uz),
-                    KeyboardButton(text=back_uz),
+                    KeyboardButton(text=top_referrals_uz),
                 ],
             ],
             resize_keyboard=True
@@ -101,7 +105,7 @@ def compotition_menu(lang):
                 ],
                 [
                     KeyboardButton(text=gifts_ru),
-                    KeyboardButton(text=back_ru),
+                    KeyboardButton(text=top_referrals_ru),                    
                 ],
             ],
             resize_keyboard=True
@@ -116,7 +120,7 @@ def compotition_menu(lang):
                 ],
                 [
                     KeyboardButton(text=gifts_en),
-                    KeyboardButton(text=back_en),
+                    KeyboardButton(text=top_referrals_en),                   
                 ],
             ],
             resize_keyboard=True
@@ -166,3 +170,44 @@ def referral_buttons(ref_link, lang):
     ]
 
     return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+
+
+
+
+def send_ref_button(lang, user_id, text, ref_link):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"   
+
+    print(ref_link)
+    payload = {
+        "chat_id": user_id,
+        "photo":  IMAGE_ID, 
+        "caption": text,
+        "parse_mode": "HTML",
+        "reply_markup": {
+            "inline_keyboard": [
+                [
+                    {
+                        "text": WEB_BUTTON[lang],
+                        "web_app": {
+                            "url": f"{ref_link}"
+                        }
+                    },
+                ],
+            ]
+        }
+    }
+
+    response = requests.post(url, json=payload)
+    
+    if not response.ok:
+        print("❌ Ошибка при отправке инлайн-кнопки:", response.text)
+        
+        
+
+def create_url_button(lang, url: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=WEB_BUTTON[lang], url=url)]
+        ]
+    )

@@ -27,7 +27,7 @@ async def _task(message: Message, state: FSMContext):
         ref_link = data['referral_link']
         print(ref_link)
         await message.answer(
-            texts.REF_LINK[lang].format(ref_link),
+            texts.REF_LINK[lang].format(ref_link=ref_link),
             reply_markup=buttons.referral_buttons(ref_link=ref_link, lang=lang)
         )
     else:

@@ -36,3 +36,31 @@ def check_phone(user):
     except Exception as e:
         return e
     
+    
+    
+def getUserPoints(tg_id):
+    url = f"{BASE_URL}/user-by/?tg_id={tg_id}"
+    
+    response = requests.get(url)
+    
+    try:
+        data = response.json()
+        return data
+    except Exception as e:
+        return e
+    
+    
+    
+    
+def TopListUser():
+    url = f"{BASE_URL}/top-referrers/"
+    
+    response = requests.get(url)
+    
+    try:
+        data = response.json()
+        return data
+    except Exception as e:
+        return e
+    
+    
